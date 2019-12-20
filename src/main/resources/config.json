@@ -1,0 +1,37 @@
+{
+	"report": { 
+		"aimbot": 11,
+		"wallhack": 11,
+		"speedhack": 11,
+		"teamharm": 11,
+		"textabuse": 11,
+		"voiceabuse": 11
+	},
+    "commend": {
+        "friendly": 13,
+        "teaching": 13,
+        "leader": 13
+    },
+    "account": {
+		"username": "cybercarvao",
+		"password": "33259119an",
+		"sharedSecret": ""
+	},
+	"fetcher": {
+		"username": "cybercarvao",
+		"password": "33259119an",
+		"sharedSecret": "",
+		"maxTries": 10,
+		"tryDelay": 2500,
+		"askSteamGuard": false
+	},
+	"type": "COMMEND",
+	"method": "SERVER",
+	"target": "https://steamcommunity.com/id/02020202002020202002022/", 
+	"serverID": "189.1.173.191:27100", 
+	"matchID": "3384967984161227262", 
+	"perChunk": 100,
+	"betweenChunks": 1000,
+	"cooldown": 6000,
+	"steamWebAPIKey": "541C674D56313586F7E3A2D6A5EB885C"
+}
