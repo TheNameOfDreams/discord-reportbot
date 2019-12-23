@@ -1,4 +1,4 @@
-package tk.yallandev.reportbot.common.steam.commend;
+package tk.yallandev.reportbot.steamapi.bot.commend;
 
 public class CommendSetting {
     

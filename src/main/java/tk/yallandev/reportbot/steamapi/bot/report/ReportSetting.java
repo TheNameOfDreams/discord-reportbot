@@ -1,4 +1,4 @@
-package tk.yallandev.reportbot.common.steam.report;
+package tk.yallandev.reportbot.steamapi.bot.report;
 
 public class ReportSetting {
     

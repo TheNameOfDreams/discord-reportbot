@@ -1,4 +1,4 @@
-package tk.yallandev.reportbot.common.steam;
+package tk.yallandev.reportbot.steamapi;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
