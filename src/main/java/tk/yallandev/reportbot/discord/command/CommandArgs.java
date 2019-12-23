@@ -1,16 +1,9 @@
 package tk.yallandev.reportbot.discord.command;
 
-import java.awt.Color;
-
 import lombok.Getter;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.entities.Guild;
-import net.dv8tion.jda.entities.MessageChannel;
-import net.dv8tion.jda.entities.TextChannel;
-import tk.brooklynofplugins.alphabot.DiscordBOT;
-import tk.brooklynofplugins.common.guild.GuildConfiguration.ChannelType;
-import tk.brooklynofplugins.common.guild.player.Player;
-import tk.yallandev.reportbot.CommonGeneral;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import tk.yallandev.reportbot.CommonConst;
 
 @Getter
 public class CommandArgs {
@@ -40,4 +33,7 @@ public class CommandArgs {
 		this.guild = guild;
 	}
 
+	public String getPrefix() {
+		return CommonConst.PREFIX;
+	}
 }

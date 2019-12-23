@@ -13,13 +13,13 @@
         "leader": 13
     },
     "account": {
-		"username": "cybercarvao",
-		"password": "33259119an",
+		"username": "",
+		"password": "",
 		"sharedSecret": ""
 	},
 	"fetcher": {
-		"username": "cybercarvao",
-		"password": "33259119an",
+		"username": "",
+		"password": "",
 		"sharedSecret": "",
 		"maxTries": 10,
 		"tryDelay": 2500,

@@ -21,11 +21,11 @@ public class CheckListener {
 		this.observersMap.remove(checkEvent);
 	}
 	
-	public void call(SteamProfile steamProfile) {
+	public void notifyAll(SteamProfile steamProfile) {
 		this.observersMap.forEach(checkEvent -> checkEvent.checking(steamProfile));
 	}
 	
-	public static interface CheckEvent {
+	public interface CheckEvent {
 		
 		void checking(SteamProfile steamProfile);
 		

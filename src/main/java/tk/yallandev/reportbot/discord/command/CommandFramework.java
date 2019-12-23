@@ -11,24 +11,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import tk.brooklynofplugins.CommonGeneral;
-import tk.brooklynofplugins.alphabot.DiscordBOT;
-import tk.brooklynofplugins.alphabot.utils.MessageUtils;
-import tk.brooklynofplugins.common.command.CommandClass;
-import tk.brooklynofplugins.common.guild.GuildConfiguration;
+import tk.yallandev.reportbot.CommonConst;
+import tk.yallandev.reportbot.discord.DiscordGeneral;
 
 public class CommandFramework {
 
 	private final Map<String, Entry<Method, Object>> commandMap = new HashMap<String, Entry<Method, Object>>();
-	private DiscordBOT manager;
+	private DiscordGeneral manager;
 
-	public CommandFramework(DiscordBOT manager) {
+	public CommandFramework(DiscordGeneral manager) {
 		this.manager = manager;
 		this.manager.getJda().addEventListener(new CommandRegister());
     }
@@ -44,28 +40,27 @@ public class CommandFramework {
             }
 
             String cmdLabel = buffer.toString();
-            String commandPrefix = textChannel.getType() == ChannelType.PRIVATE ? "!"
-                    : CommonGeneral.getGuildCommon().getGuildConfiguration(guild).getCommandPrefix();
+            String commandPrefix = CommonConst.PREFIX;
 
             if (commandMap.containsKey(cmdLabel.replace(commandPrefix, ""))) {
                 Entry<Method, Object> entry = commandMap.get(cmdLabel.replace(commandPrefix, ""));
                 Command command = entry.getKey().getAnnotation(Command.class);
 
-                if (command.onlyChat())
-                    if (CommonGeneral.getGuildCommon().getGuildConfiguration(guild)
-                            .hasChannel(GuildConfiguration.ChannelType.COMMAND)) {
-                        if (textChannel.getIdLong() != CommonGeneral.getGuildCommon().getGuildConfiguration(guild)
-                                .getChannelId(GuildConfiguration.ChannelType.COMMAND)) {
-                            TextChannel channel = manager.getJda().getTextChannelById(CommonGeneral.getGuildCommon()
-                                    .getGuildConfiguration(guild).getChannelId(GuildConfiguration.ChannelType.COMMAND));
-
-                            if (channel != null) {
-                                // MessageUtils.sendMessage(event.getChannel(), "Você não só pode executar
-                                // comandos no canal ``" + textChannel.getName() + "``.", 5);
-                                return true;
-                            }
-                        }
-                    }
+//                if (command.onlyChat())
+//                    if (CommonGeneral.getGuildCommon().getGuildConfiguration(guild)
+//                            .hasChannel(GuildConfiguration.ChannelType.COMMAND)) {
+//                        if (textChannel.getIdLong() != CommonGeneral.getGuildCommon().getGuildConfiguration(guild)
+//                                .getChannelId(GuildConfiguration.ChannelType.COMMAND)) {
+//                            TextChannel channel = manager.getJda().getTextChannelById(CommonGeneral.getGuildCommon()
+//                                    .getGuildConfiguration(guild).getChannelId(GuildConfiguration.ChannelType.COMMAND));
+//
+//                            if (channel != null) {
+//                                // MessageUtils.sendMessage(event.getChannel(), "Você não só pode executar
+//                                // comandos no canal ``" + textChannel.getName() + "``.", 5);
+//                                return true;
+//                            }
+//                        }
+//                    }
 
                 if (command.runAsync()) {
                     new Thread(new Runnable() {
@@ -134,21 +129,19 @@ public class CommandFramework {
             if (manager.getJda().getSelfUser().getId().equals(event.getAuthor().getId()))
                 return;
 
-            String commandPrefix = event.getChannelType() == ChannelType.TEXT
-                    ? CommonGeneral.getGuildCommon().getGuildConfiguration(event.getGuild()).getCommandPrefix() : "!";
+            String commandPrefix = CommonConst.PREFIX;
 
             if (!event.getMessage().getContentDisplay().startsWith(commandPrefix))
                 return;
 
-            if (event.getChannelType() == ChannelType.PRIVATE) {
-                MessageUtils.sendMessage(event.getChannel(),
-                        "Por enquanto não é permitido enviar nenhum comando no meu privado.");
+            if (event.getChannel() instanceof PrivateChannel) {
+//                MessageUtils.sendMessage(event.getChannel(), "Por enquanto não é permitido enviar nenhum comando no meu privado.");
                 return;
             }
 
             String[] txt = event.getMessage().getContentDisplay().trim().split(" ");
             String[] args = new String[txt.length - 1];
-
+            
             for (int i = 1; i < txt.length; i++) {
                 args[i - 1] = txt[i];
             }

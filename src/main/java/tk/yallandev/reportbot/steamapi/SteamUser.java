@@ -1,7 +1,7 @@
 package tk.yallandev.reportbot.steamapi;
 
 import lombok.AllArgsConstructor;
-import tk.yallandev.reportbot.steamapi.bot.report.ReportSetting;
+import tk.yallandev.reportbot.steamapi.bot.settings.ReportSetting;
 
 @AllArgsConstructor
 public class SteamUser {
