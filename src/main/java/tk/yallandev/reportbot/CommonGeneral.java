@@ -6,6 +6,7 @@ import lombok.Getter;
 import tk.yallandev.reportbot.common.update.UpdateListener;
 import tk.yallandev.reportbot.discord.DiscordGeneral;
 import tk.yallandev.reportbot.steamapi.SteamManager;
+import tk.yallandev.reportbot.steamapi.bot.BotList;
 import tk.yallandev.reportbot.steamapi.check.CheckListener;
 
 @Getter
@@ -19,10 +20,11 @@ public class CommonGeneral {
     
     private DiscordGeneral discordGeneral;
     private SteamManager steamManager;
+    private BotList botList;
     
     private CheckListener checkListener;
     
-    private String steamWebAPIKey = "";
+    private String steamWebAPIKey = "541C674D56313586F7E3A2D6A5EB885C";
     
     public static void main(String[] args) {
 		new CommonGeneral(args);
@@ -39,11 +41,11 @@ public class CommonGeneral {
         
         configuration.add("report", report);
         
-        updateListener = new UpdateListener();
-        updateListener.start();
+        (updateListener = new UpdateListener()).start();
         
         discordGeneral = new DiscordGeneral();
         steamManager = new SteamManager();
+        updateListener.registerObserver(botList = new BotList());
         
         checkListener = new CheckListener();
     }

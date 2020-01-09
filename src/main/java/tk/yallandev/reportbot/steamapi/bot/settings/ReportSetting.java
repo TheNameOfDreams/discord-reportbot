@@ -25,6 +25,15 @@ public class ReportSetting implements Setting {
     private int textabuse;
     private int voiceabuse;
     
+    public ReportSetting(int botCount) {
+    	aimbot = botCount;
+    	wallhack = botCount;
+    	speedhack = botCount;
+    	teamharm = botCount;
+    	textabuse = botCount;
+    	voiceabuse = botCount;
+	}
+    
 	@Override
 	public Map<String, Integer> toMap() {
 		

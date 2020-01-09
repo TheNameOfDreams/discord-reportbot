@@ -18,5 +18,18 @@ public class SteamAPI {
 	public static boolean isSteam64(String steamId64) {
 		return steamId64.length() == 17 || steamId64.length() == 18;
 	}
+	
+	public static String getUrlFromArgument(String arg) {
+		String profileUrl;
+		
+		if (SteamAPI.isCorrectAccountUrl(arg))
+			profileUrl = arg;
+		else if (SteamAPI.isSteam64(arg))
+			profileUrl = "https://steamcommunity.com/profiles/" + arg + "/";
+		else
+			profileUrl = "https://steamcommunity.com/id/" + arg + "/";
+		
+		return profileUrl;
+	}
 
 }

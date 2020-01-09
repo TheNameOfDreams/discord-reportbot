@@ -29,6 +29,7 @@ public class DiscordGeneral {
 		CommandFramework commandFramework = new CommandFramework(this);
 
 		commandFramework.registerCommands(new SteamCommand());
+		threadManager = new ThreadManager();
 	}
 
 }

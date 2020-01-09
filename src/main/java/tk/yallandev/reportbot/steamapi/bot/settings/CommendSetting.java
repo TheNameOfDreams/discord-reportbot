@@ -9,6 +9,12 @@ public class CommendSetting implements Setting {
     private int teaching;
     private int leader;
     
+    public CommendSetting(int botCount) {
+    	this.friendly = botCount;
+    	this.teaching = botCount;
+    	this.leader = botCount;
+	}
+    
 	@Override
 	public Map<String, Integer> toMap() {
 		
